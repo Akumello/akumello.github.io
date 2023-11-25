@@ -1,14 +1,16 @@
 :root {
-  --main: #339989;
+  --main: #2d877a;
   --dark: #131515;
   --dark-accent: #2B2C28;
-  --light: ghostwhite;
+  --light: #E5E4E2;
   --light-accent: #7DE2D1;
 }
 
 body {
-  margin: 0px;
+  margin-left: 4rem;
+  margin-right: 4rem;
   background-color: var(--light);
+  color: var(--dark);
 }
 
 .row {
@@ -19,13 +21,40 @@ body {
 }
 
 .header {
-  padding-top:2em;
+  padding-top:2.5rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  padding-left: 4em;
-  padding-right: 4em;
+}
+
+.heading {
+  color: var(--main);
+  padding-top: 2rem;
+}
+
+.project-card {
+  margin: 0;
+  padding-left: 1em;
+  padding-right: 1em;
+  border: solid;
+  border-radius: 5%;
+  border-color: var(--dark);
+  width: 200px;
+  transition: border-color .15s ease-in-out;
+}
+
+.project-card:hover {
+  cursor: pointer;
+  border-color: var(--light-accent);
+}
+
+.project-card:active {
+  border-color: var(--dark);
+}
+
+img {
+  width: inherit;
 }
 
 h1 {
