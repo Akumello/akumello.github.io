@@ -26,5 +26,19 @@ carefreeButton.addEventListener('click', e => {
   window.open('http://carefree.michaelgallahan.com', '_self');
 });
 
-setLinkBarToCenter();
+function disableScrollX() {  
+  // Get the current page scroll position in the horizontal direction 
+  scrollLeft = window.scrollX || document.documentElement.scrollLeft;
+  
+  
+  // If horizontal scroll is attempted,
+  // Set the original value
+  window.onscroll = function() {
+  window.scrollTo(scrollLeft, window.scrollY);
+  };
+}
+
+// setLinkBarToCenter();
 setLinkBold();
+disableScrollX();
+linksBar.setAttribute('style', `opacity: 1;`);

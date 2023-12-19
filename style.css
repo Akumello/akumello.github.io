@@ -11,6 +11,7 @@ body {
   margin: 0;
   background-color: var(--light);
   color: var(--dark);
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .flex-r {
@@ -62,35 +63,42 @@ h1 {
 }
 
 .home-title {
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: 'Tenor Sans', sans-serif;
   font-size: 7em;
   margin: 0;
 }
 
+.font-margin {
+  margin: 0 5px;
+}
+
 .home-subtitle {
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 1.5em;
   font-style: italic;
-  margin: 0;
+  margin: 0 12px;
 }
 
 .links {
+  margin: 0;
   font-size: var(--text-height);
   line-height: var(--text-height);
   position: fixed;
-  border-radius: 100px;
-  background-color: rgba(255,255,255, 0.8);
-  box-shadow: rgba(255,255,255, .8) 0px 0px 5px 5px;
-  width: auto;
-  bottom: 10%;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  border-radius: 10px;
+  color: var(--light);
+  background-color: rgba(255,255,255, 0.0);
+  box-shadow: rgba(255,255,255, .0) 0px 0px 10px 10px;
+  padding: 0px 1em;
+  width: 40vw;
+  top: 4%;
+  left: 75%;
   opacity: 0;
   transition: opacity 2s ease-out;
+  transform: translate(-50%, -50%);
 }
 
 .header-link-selected {
   cursor: default;
-  color: var(--dark);
+  color: var(--light);
   list-style-type: none;
   font-weight: bolder;
 }
@@ -98,8 +106,9 @@ h1 {
 .header-link {
   cursor: pointer;
   color: transparent;
+  font-weight:lighter;
   text-shadow: 
-    0 calc(-1*var(--_t,0em)) var(--dark), 
+    0 calc(-1*var(--_t,0em)) var(--light), 
     0 calc(var(--text-height) - var(--_t,0em)) var(--main);
   overflow: hidden;
   transition: 0.1s ease-in;
@@ -135,9 +144,9 @@ h1 {
 }
 
 img {
-  width: 50vw;
+  width: 100vw;
   height: 100vh;
-  object-fit:cover;
+  object-fit: cover;
   overflow: hidden;
 }
 
