@@ -129,7 +129,7 @@ h1 {
 .right-pane {
   position: absolute;
   left: 50%;
-  /* transition: left .2s; */
+  transition: left .2s;
 }
 
 .italic {
