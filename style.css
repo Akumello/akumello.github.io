@@ -1,7 +1,7 @@
 :root {
   --main: #2d877a;
   --dark: #131515;
-  --dark-accent: #2B2C28;
+  --dark-accent: #474f4d;
   --light: #E5E4E2;
   --light-accent: #7DE2D1;
   --text-height: 1.5em;
@@ -9,6 +9,7 @@
 
 body {
   margin: 0;
+  padding: .01px;
   width: 100%;
   overflow: hidden;
   background-color: var(--light);
@@ -90,21 +91,27 @@ h1 {
   color: var(--light);
   list-style-type: none;
   font-weight: bolder;
+  padding: .15em .4em;
+  text-shadow: 1px 1px 1px black;
 }
 
 .header-link {
+  --_c: black;
   cursor: pointer;
   color: transparent;
-  font-weight:lighter;
-  text-shadow: 
-    0 calc(-1*var(--_t,0em)) var(--light), 
-    0 calc(var(--text-height) - var(--_t,0em)) var(--main);
+  font-weight: lighter;
+  padding: .15em .4em;
+  text-shadow:
+    0 calc(-1*var(--_t,0em)) var(--light),
+    0 calc(var(--text-height) - var(--_t,0em)) var(--main),
+    2px 2px 5px var(--_c);
   overflow: hidden;
   transition: 0.1s ease-in;
 }
 
 .header-link:hover {
   --_t: var(--text-height);
+  --_c: white;
 }
 
 .cur-default {
@@ -129,8 +136,18 @@ h1 {
 .right-pane {
   position: absolute;
   left: 50%;
-  transition: left .25s;
-  transition: bottom .25s;
+  /* transition: left .1s;
+  transition: bottom .1s; */
+}
+
+.projects {
+  display: none;
+  position: relative;
+  opacity: 0;
+  width: 80%;
+  margin: 15% auto;
+  z-index: -1;
+  transition: opacity .65s;
 }
 
 .italic {
