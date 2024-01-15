@@ -1,26 +1,29 @@
+const Areas = {
+  Home: 0,
+  Projects: 1,
+  Blog: 2,
+  Contact: 3
+};
+let currentArea = Areas.Home;
+let headerCurSelected = Areas.Home;
+let curScrollX = 0;
+let curScrollY = 0;
+
 let carefreeButton = document.querySelector('#carefree');
 let linksBar = document.querySelector('.links');
 let links = linksBar.querySelectorAll('.header-link');
 let rightPane = document.querySelector('.right-pane');
 let leftPane = document.querySelector('.left-pane');
 let projects = document.querySelector('.projects');
-const Areas = {
-  Home: 0,
-  HomeImage: 1,
-  About: 2
-};
-let currentArea = Areas.Home;
-let headerCurSelected = Areas.Home;
 let carefreeVideo = document.querySelector('#carefree_video');
 
-let curScrollX = 0;
-let curScrollY = 0;
-
+//#region Utility Functions
 function clamp(number, min, max) {
   return Math.max(min, Math.min(number, max));
 }
+//#endregion
 
-//Execute
+//#region Center Link Bar (Unused after redesign)
 function setLinkBarToCenter() {
   let screenWidth = window.innerWidth;
   let linksStyle = getComputedStyle(linksBar);
@@ -29,8 +32,12 @@ function setLinkBarToCenter() {
   console.log(screenWidth);
   linksBar.setAttribute('style', `left: ${leftPercent}%; opacity: 1;`);
 }
+addEventListener('resize', e => {
+  //setLinkBarToCenter();
+});
+//#endregion
 
-function setLinkBold(area) {
+function setActiveLink(area) {
   links[headerCurSelected].classList.add('header-link');
   links[headerCurSelected].classList.remove('header-link-selected');
   headerCurSelected = area;
@@ -38,28 +45,19 @@ function setLinkBold(area) {
   links[area].classList.add('header-link-selected');
 }
 
-addEventListener('resize', e => {
-  //setLinkBarToCenter();
-});
-
-carefreeButton.addEventListener('click', e => {
-  window.open('http://carefree.michaelgallahan.com', '_self');
-});
-
 function scroll(scrollDelta) {
   // Keep track of the users current position
   curScrollY += scrollDelta;
 
-  // How far the user must scroll to finish home animation and dismiss the home image
-  let homeAnimDepth = 1000;
-  let imgDismissDepth = 2000;
-  let imgStickDuration = 10;
-  let titleFadeLocation = 42;
+  let homeAnimDepth = 1000;   // Scroll distance to finish home image horizontal translate
+  let imgDismissDepth = 2000; // Scroll distance to finish home image vertical translate
+  let imgStickDuration = 10;  // Scroll distance to begin vertical translate
+  let titleFadeLocation = 42; // Fade home title when home image left has reached this percent of the viewport
 
   switch(true) {
     case curScrollY < 0:
       curScrollY = 0;
-    case curScrollY < homeAnimDepth:                     // Image scrolling horizontal
+    case curScrollY < homeAnimDepth:                     // Image scrolling horizontally
       // Perform these lines one time upon entry into Home area
       if(!(currentArea == Areas.Home)) {
         leftPane.style.display = 'block';
@@ -68,17 +66,15 @@ function scroll(scrollDelta) {
       }
       currentArea = Areas.Home;
       break;
-    case curScrollY < (homeAnimDepth + imgDismissDepth): // Image scrolling vertical
-      // Perform these lines one time upon entry into HomeImage area
-      if(!(currentArea == Areas.HomeImage)) {
+    case curScrollY < (homeAnimDepth + imgDismissDepth): // Image scrolling vertically
+      // Perform these lines one time upon entry into Projects area
+      if(!(currentArea == Areas.Projects)) {
         leftPane.style.display = 'none';
         document.body.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--dark-accent');
         projects.style.display = 'block';
         projects.style.opacity = 0;
       }
-      currentArea = Areas.HomeImage;
-      break;
-    default:                                             // Image no longer visible
+      currentArea = Areas.Projects;
       break;
   }
 
@@ -86,27 +82,38 @@ function scroll(scrollDelta) {
 
   let newLeft = clamp(50 * (1 - curScrollY / homeAnimDepth), 0, 50);
   let newBottom = clamp(100 * ((curScrollY - homeAnimDepth) / imgDismissDepth), 0, 100 + imgStickDuration);
-
-  leftPane.style.opacity = (newLeft < titleFadeLocation) ? 0 : 1;
-
   rightPane.style.left = newLeft + '%';
   rightPane.style.bottom = (newBottom > imgStickDuration) ? newBottom - imgStickDuration + '%' : '';
 
+  leftPane.style.opacity = (newLeft < titleFadeLocation) ? 0 : 1;
+
   // Display projects pane when home image is halfway dismissed
   if (curScrollY > (homeAnimDepth + (imgDismissDepth / 2))) {
-    setLinkBold(Areas.HomeImage);
+    setActiveLink(Areas.Projects);
     projects.style.opacity = 1;
     carefreeVideo.play();
   }
   else {
-    setLinkBold(Areas.Home);
+    setActiveLink(Areas.Home);
     projects.style.opacity = 0;
   }
 }
 
+//#region Input Handling
 window.onwheel = e => {
   scroll(e.deltaY);
 };
 
-setLinkBold(Areas.Home);
+//#endregion
+
+//#region Buttons
+carefreeButton.addEventListener('click', e => {
+  window.open('http://carefree.michaelgallahan.com', '_self');
+});
+
+//#endregion
+
+//#region Execution
+setActiveLink(Areas.Home);
 linksBar.setAttribute('style', 'opacity: 1;');
+//#endregion

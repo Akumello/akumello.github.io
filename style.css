@@ -68,6 +68,17 @@ h1 {
   margin: 0 12px;
 }
 
+.landscape-video {
+  width: 45%;
+  flex: 1;
+}
+
+.project-text {
+  color: aliceblue;
+  padding: 0 2em;
+  flex: 1;
+}
+
 .links {
   margin: 0;
   font-size: 1em;
