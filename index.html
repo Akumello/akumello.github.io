@@ -12,23 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap" rel="stylesheet">
   </head>
   <body>
-    <!-- <header class="header">
-      <h1 class="title">Michael Gallahan</h1>
-    </header>
-    <section>
-      <h2 class="heading">Projects</h2>
-      <div class="project-card">
-        <h3>Carefree Cooking</h3>
-        <img src="img/carefree.png" alt="Carefree Cooking app preview">
-      </div>
-    </section>
-    <section>
-      <h2 class="heading">Experience</h2>
-    </section>
-    <section style="display: flex; justify-content: center; flex-direction: row; padding-top: 10%;">
-      <h2>Coming Soon...</h2>
-    </section>   -->
-
     <section class="left-pane">
       <div class="home-title">Michael</div>
       <div class="home-title font-margin">Gallahan</div>
@@ -50,10 +33,16 @@
     </section>
     <section class="projects">
       <div class="" style="display: flex;">
-        <video id="carefree_video" class="landscape-video" src="vid/carefree_short.webm" type="video/webm" autoplay loop></video>
-        <div class="project-text home-subtitle">
+        <div class="carousel-arrow" style="flex: 1;">
+          <img src="img/chevron-left.svg" class="chevron" alt="Left arrow for projects carousel">
+        </div>
+        <video style="flex: 2;" id="carefree_video" class="landscape-video" src="vid/carefree_short.webm" type="video/webm" autoplay loop></video>
+        <div style="flex: 2;" class="project-text home-subtitle">
           <h2>Carefree Cooking</h2>
           <p>Recipe storage web app. Built using Spring, Postgresql, and html/css/javascript.</p>
+        </div>
+        <div class="carousel-arrow" style="flex: 1;">
+          <img src="img/chevron-right.svg" class="chevron" alt="Right arrow for projects carousel">
         </div>
       </div>
     </section>

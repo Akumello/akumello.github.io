@@ -2,9 +2,14 @@
   --main: #2d877a;
   --dark: #131515;
   --dark-accent: #474f4d;
-  --light: #E5E4E2;
+  --light: #e5e4e2;
+  --light-rgb: 229, 228, 226;
   --light-accent: #7DE2D1;
   --text-height: 1.5em;
+}
+
+html {
+  height:100%;
 }
 
 body {
@@ -153,16 +158,88 @@ h1 {
 
 .projects {
   display: none;
-  position: relative;
+  position: absolute;
+  padding: 3em 0;
+  background-color: rgba(19, 21, 21, .15);
   opacity: 0;
-  width: 80%;
-  margin: 15% auto;
+  width: 100%;
+  top: 50%;
+  left: 50%;
   z-index: -1;
+  transform: translate(-50%, -50%);
   transition: opacity .65s;
+}
+
+.gg-chevron-left {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  transform: scale(var(--ggs,1));
+  width: 22px;
+  height: 22px;
+  border: 2px solid transparent;
+  border-radius: 100px
+}
+.gg-chevron-left::after {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-bottom: 2px solid;
+  border-left: 2px solid;
+  transform: rotate(45deg);
+  left: 6px;
+  top: 4px
 }
 
 .italic {
   font-style: italic;
+}
+
+.chevron {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  filter: invert(1);
+  width: 5em;
+  height: 5em;
+  transform: translate(-50%, -50%);
+}
+
+.carousel-arrow {
+  border-radius: 10px;
+  transition: background-color .25s;
+}
+
+.carousel-arrow:hover {
+  background-color: rgba(var(--light-rgb), .3);
+}
+
+.gradient {
+  background: linear-gradient(225deg, #7b949c, #807595);
+  background-size: 400% 400%;
+
+  -webkit-animation: GradientAnim 8s ease infinite;
+  -moz-animation: GradientAnim 8s ease infinite;
+  animation: GradientAnim 8s ease infinite;
+}
+
+@-webkit-keyframes GradientAnim {
+  0%{background-position:0% 44%}
+  50%{background-position:100% 57%}
+  100%{background-position:0% 44%}
+}
+@-moz-keyframes GradientAnim {
+  0%{background-position:0% 44%}
+  50%{background-position:100% 57%}
+  100%{background-position:0% 44%}
+}
+@keyframes GradientAnim {
+  0%{background-position:0% 44%}
+  50%{background-position:100% 57%}
+  100%{background-position:0% 44%}
 }
 
 /* .project-card {

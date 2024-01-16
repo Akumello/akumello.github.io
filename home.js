@@ -48,6 +48,7 @@ function setActiveLink(area) {
 function scroll(scrollDelta) {
   // Keep track of the users current position
   curScrollY += scrollDelta;
+  console.log(curScrollY);
 
   let homeAnimDepth = 1000;   // Scroll distance to finish home image horizontal translate
   let imgDismissDepth = 2000; // Scroll distance to finish home image vertical translate
@@ -62,6 +63,7 @@ function scroll(scrollDelta) {
       if(!(currentArea == Areas.Home)) {
         leftPane.style.display = 'block';
         projects.style.display = 'none';
+        document.body.classList.remove('gradient');
         document.body.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--light');
       }
       currentArea = Areas.Home;
@@ -70,11 +72,15 @@ function scroll(scrollDelta) {
       // Perform these lines one time upon entry into Projects area
       if(!(currentArea == Areas.Projects)) {
         leftPane.style.display = 'none';
-        document.body.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--dark-accent');
+        document.body.classList.add('gradient');
+        document.body.style.backgroundColor = '';
         projects.style.display = 'block';
         projects.style.opacity = 0;
       }
       currentArea = Areas.Projects;
+      break;
+    case curScrollY > (homeAnimDepth + imgDismissDepth + 500):
+      curScrollY = (homeAnimDepth + imgDismissDepth + 500);
       break;
   }
 
@@ -88,7 +94,7 @@ function scroll(scrollDelta) {
   leftPane.style.opacity = (newLeft < titleFadeLocation) ? 0 : 1;
 
   // Display projects pane when home image is halfway dismissed
-  if (curScrollY > (homeAnimDepth + (imgDismissDepth / 2))) {
+  if (curScrollY > (homeAnimDepth + (imgDismissDepth / 1.5))) {
     setActiveLink(Areas.Projects);
     projects.style.opacity = 1;
     carefreeVideo.play();
