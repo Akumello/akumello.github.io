@@ -8,8 +8,15 @@ let currentArea = Areas.Home;
 let headerCurSelected = Areas.Home;
 let curScrollX = 0;
 let curScrollY = 0;
+let homeAnimDepth = 1000;   // Scroll distance to finish home image horizontal translate
+let imgDismissDepth = 2000; // Scroll distance to finish home image vertical translate
+let imgStickDuration = 10;  // Scroll distance to begin vertical translate
+let titleFadeLocation = 42; // Fade home title when home image left has reached this percent of the viewport
 
-let carefreeButton = document.querySelector('#carefree');
+let carefreeButton = document.querySelector('#btn-carefree');
+let homeButton = document.querySelector('#btn-home');
+let foodPhasesButton = document.querySelector('#btn-blog');
+let projectsButton = document.querySelector('#btn-projects');
 let linksBar = document.querySelector('.links');
 let links = linksBar.querySelectorAll('.header-link');
 let rightPane = document.querySelector('.right-pane');
@@ -50,11 +57,6 @@ function scroll(scrollDelta) {
   curScrollY += scrollDelta;
   console.log(curScrollY);
 
-  let homeAnimDepth = 1000;   // Scroll distance to finish home image horizontal translate
-  let imgDismissDepth = 2000; // Scroll distance to finish home image vertical translate
-  let imgStickDuration = 10;  // Scroll distance to begin vertical translate
-  let titleFadeLocation = 42; // Fade home title when home image left has reached this percent of the viewport
-
   switch(true) {
     case curScrollY < 0:
       curScrollY = 0;
@@ -68,7 +70,7 @@ function scroll(scrollDelta) {
       }
       currentArea = Areas.Home;
       break;
-    case curScrollY < (homeAnimDepth + imgDismissDepth): // Image scrolling vertically
+    case curScrollY <= (homeAnimDepth + imgDismissDepth  + 500): // Image scrolling vertically
       // Perform these lines one time upon entry into Projects area
       if(!(currentArea == Areas.Projects)) {
         leftPane.style.display = 'none';
@@ -115,6 +117,18 @@ window.onwheel = e => {
 //#region Buttons
 carefreeButton.addEventListener('click', e => {
   window.open('http://carefree.michaelgallahan.com', '_self');
+});
+
+foodPhasesButton.addEventListener('click', e => {
+  window.open('http://www.foodphases.com', '_self');
+});
+
+homeButton.addEventListener('click', e => {
+  scroll(-curScrollY);
+});
+
+projectsButton.addEventListener('click', e => {
+  scroll((homeAnimDepth + imgDismissDepth + 500));
 });
 
 //#endregion

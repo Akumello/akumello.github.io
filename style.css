@@ -103,6 +103,7 @@ h1 {
 }
 
 .header-link-selected {
+  font-size: 1.2em;
   cursor: default;
   color: var(--light);
   list-style-type: none;
