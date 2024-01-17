@@ -1,3 +1,4 @@
+const verbose = true; // enable 
 const Areas = {
   Home: 0,
   Projects: 1,
@@ -28,6 +29,10 @@ let carefreeVideo = document.querySelector('#carefree_video');
 function clamp(number, min, max) {
   return Math.max(min, Math.min(number, max));
 }
+
+function log(output) {
+  if (verbose) console.log(output);
+}
 //#endregion
 
 //#region Center Link Bar (Unused after redesign)
@@ -44,23 +49,26 @@ addEventListener('resize', e => {
 });
 //#endregion
 
+//#region Scroll Logic
 function setActiveLink(area) {
+  // Remove previous area link selected css
   links[headerCurSelected].classList.add('header-link');
   links[headerCurSelected].classList.remove('header-link-selected');
   headerCurSelected = area;
+
+  // Set new area link selected css
   links[area].classList.remove('header-link');
   links[area].classList.add('header-link-selected');
 }
 
-function scroll(scrollDelta) {
-  // Keep track of the users current position
-  curScrollY += scrollDelta;
-  console.log(curScrollY);
-
+function switchAreas() {
   switch(true) {
+    // Scroll is at the beginning and can't go negative
     case curScrollY < 0:
       curScrollY = 0;
-    case curScrollY < homeAnimDepth:                     // Image scrolling horizontally
+
+    // Home Image is scrolling horizontally to cover viewport
+    case curScrollY < homeAnimDepth:
       // Perform these lines one time upon entry into Home area
       if(!(currentArea == Areas.Home)) {
         leftPane.style.display = 'block';
@@ -70,7 +78,9 @@ function scroll(scrollDelta) {
       }
       currentArea = Areas.Home;
       break;
-    case curScrollY <= (homeAnimDepth + imgDismissDepth  + 500): // Image scrolling vertically
+
+    // Home image is scrolling vertically off the viewport
+    case curScrollY <= (homeAnimDepth + imgDismissDepth  + 500):
       // Perform these lines one time upon entry into Projects area
       if(!(currentArea == Areas.Projects)) {
         leftPane.style.display = 'none';
@@ -81,21 +91,30 @@ function scroll(scrollDelta) {
       }
       currentArea = Areas.Projects;
       break;
+
+    // Home image has been fully dismissed, so lock scroll
     case curScrollY > (homeAnimDepth + imgDismissDepth + 500):
       curScrollY = (homeAnimDepth + imgDismissDepth + 500);
       break;
   }
+}
 
-  
-
+function homeAnimation() {
+  // Home image's 'left' attribute moving from 50% towards 0% based on curScrollY
   let newLeft = clamp(50 * (1 - curScrollY / homeAnimDepth), 0, 50);
+  // Home image's 'bottom' attribute moving from 0% towards 100% based on curScrollY
   let newBottom = clamp(100 * ((curScrollY - homeAnimDepth) / imgDismissDepth), 0, 100 + imgStickDuration);
+
+  // Perform movements
   rightPane.style.left = newLeft + '%';
   rightPane.style.bottom = (newBottom > imgStickDuration) ? newBottom - imgStickDuration + '%' : '';
 
+  // Fade left pane title in/out at trigger point
   leftPane.style.opacity = (newLeft < titleFadeLocation) ? 0 : 1;
+}
 
-  // Display projects pane when home image is halfway dismissed
+function triggerProjectsPane() {
+  // Display projects pane when home image is mostly dismissed
   if (curScrollY > (homeAnimDepth + (imgDismissDepth / 1.5))) {
     setActiveLink(Areas.Projects);
     projects.style.opacity = 1;
@@ -107,11 +126,41 @@ function scroll(scrollDelta) {
   }
 }
 
+function verticalScroll(scrollDelta) {
+  // Keep track of the users current position
+  curScrollY += scrollDelta;
+  log(`curScrollY: ${curScrollY}`);
+
+  switchAreas();
+  homeAnimation();
+  triggerProjectsPane();
+}
+
+function horizontalScroll(scrollDelta) {
+  curScrollX += scrollDelta;
+  log(`curScrollX: ${curScrollX}`);
+
+
+}
+//#endregion
+
 //#region Input Handling
 window.onwheel = e => {
-  scroll(e.deltaY);
+  verticalScroll(e.deltaY);
+  horizontalScroll(e.deltaX);
 };
 
+window.ontouchmove = e => {
+  verticalScroll(e.deltaY);
+  horizontalScroll(e.deltaX);
+}
+
+document.onkeydown = e => {
+  if (e.key === 'ArrowUp')        verticalScroll(-220);
+  else if (e.key == 'ArrowDown')  verticalScroll(220);
+  else if (e.key == 'ArrowLeft')  horizontalScroll(100);
+  else if (e.key == 'ArrowRight') horizontalScroll(-100);
+}
 //#endregion
 
 //#region Buttons
@@ -124,11 +173,11 @@ foodPhasesButton.addEventListener('click', e => {
 });
 
 homeButton.addEventListener('click', e => {
-  scroll(-curScrollY);
+  verticalScroll(-curScrollY);
 });
 
 projectsButton.addEventListener('click', e => {
-  scroll((homeAnimDepth + imgDismissDepth + 500));
+  verticalScroll((homeAnimDepth + imgDismissDepth + 500));
 });
 
 //#endregion

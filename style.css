@@ -57,6 +57,16 @@ h1 {
   overflow: hidden;
 }
 
+.title-medium {
+  font-family: 'Tenor Sans', sans-serif;
+  font-style: italic;
+  font-size: 2.5em;
+}
+
+.subtitle-medium {
+  font-size: 1.25em;
+}
+
 .home-title {
   font-family: 'Tenor Sans', sans-serif;
   font-size: 7em;
