@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap" rel="stylesheet">
   </head>
   <body>
+    <!-- Home Page Area -->
     <section class="left-pane">
       <div class="home-title">Michael</div>
       <div class="home-title font-margin">Gallahan</div>
@@ -20,6 +21,25 @@
     <section class="right-pane">
       <img src="img/pizza.jpeg" alt="pizza" class="img-home">
     </section>
+
+    <!-- Projects Page Area -->
+    <section id="projects-pane">
+      <div class="" style="display: flex;">
+        <div class="carousel-arrow" style="flex: 1;">
+          <img src="img/chevron-left.svg" class="chevron" alt="Left arrow for projects carousel">
+        </div>
+        <video style="flex: 2;" id="carefree_video" class="landscape-video" src="vid/carefree_short.webm" type="video/webm" autoplay loop muted></video>
+        <div style="flex: 2;" class="project-text">
+          <h2 class="title-medium">Carefree Cooking</h2>
+          <p class="subtitle-medium">Carefree Cooking is a web app to store, view, and edit recipes! Built with a custom backend REST API using Spring and Postgresql. Frontend developed in HTML, CSS, and Javascript.</p>
+        </div>
+        <div class="carousel-arrow" style="flex: 1;">
+          <img src="img/chevron-right.svg" class="chevron" alt="Right arrow for projects carousel">
+        </div>
+      </div>
+    </section>
+
+    <!-- Links -->
     <section class="links">
       <ul class="p-0 flex-r-gap">
         <li id="btn-home" class="header-link" href="">Home</li>
@@ -31,21 +51,7 @@
         <li id="btn-carefree" class="header-link" href="">Carefee Cooking</li>
       </ul>
     </section>
-    <section class="projects">
-      <div class="" style="display: flex;">
-        <div class="carousel-arrow" style="flex: 1;">
-          <img src="img/chevron-left.svg" class="chevron" alt="Left arrow for projects carousel">
-        </div>
-        <video style="flex: 2;" id="carefree_video" class="landscape-video" src="vid/carefree_short.webm" type="video/webm" autoplay loop></video>
-        <div style="flex: 2;" class="project-text">
-          <h2 class="title-medium">Carefree Cooking</h2>
-          <p class="subtitle-medium">Carefree Cooking is a web app to store, view, and edit recipes! Built with a custom backend REST API using Spring and Postgresql. Frontend developed in HTML, CSS, and Javascript.</p>
-        </div>
-        <div class="carousel-arrow" style="flex: 1;">
-          <img src="img/chevron-right.svg" class="chevron" alt="Right arrow for projects carousel">
-        </div>
-      </div>
-    </section>
+
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap');
     </style>

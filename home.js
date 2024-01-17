@@ -9,11 +9,13 @@ let currentArea = Areas.Home;
 let headerCurSelected = Areas.Home;
 let curScrollX = 0;
 let curScrollY = 0;
+let scrollSpeed = 20;
 let homeAnimDepth = 1000;   // Scroll distance to finish home image horizontal translate
-let imgDismissDepth = 2000; // Scroll distance to finish home image vertical translate
-let imgStickDuration = 10;  // Scroll distance to begin vertical translate
-let titleFadeLocation = 42; // Fade home title when home image left has reached this percent of the viewport
+let imgDismissDepth = 1000; // Scroll distance to finish home image vertical translate
+let imgStickDuration = 0;   // Scroll distance to begin vertical translate
+let titleFadeLocation = 38; // Fade home title when home image left has reached this percent of the viewport
 
+let html = document.querySelector('html');
 let carefreeButton = document.querySelector('#btn-carefree');
 let homeButton = document.querySelector('#btn-home');
 let foodPhasesButton = document.querySelector('#btn-blog');
@@ -22,7 +24,7 @@ let linksBar = document.querySelector('.links');
 let links = linksBar.querySelectorAll('.header-link');
 let rightPane = document.querySelector('.right-pane');
 let leftPane = document.querySelector('.left-pane');
-let projects = document.querySelector('.projects');
+let projectsPane = document.querySelector('#projects-pane');
 let carefreeVideo = document.querySelector('#carefree_video');
 
 //#region Utility Functions
@@ -72,7 +74,7 @@ function switchAreas() {
       // Perform these lines one time upon entry into Home area
       if(!(currentArea == Areas.Home)) {
         leftPane.style.display = 'block';
-        projects.style.display = 'none';
+        projectsPane.style.display = 'none';
         document.body.classList.remove('gradient');
         document.body.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--light');
       }
@@ -86,16 +88,16 @@ function switchAreas() {
         leftPane.style.display = 'none';
         document.body.classList.add('gradient');
         document.body.style.backgroundColor = '';
-        projects.style.display = 'block';
-        projects.style.opacity = 0;
+        projectsPane.style.display = 'block';
+        projectsPane.style.opacity = 0;
       }
       currentArea = Areas.Projects;
       break;
 
     // Home image has been fully dismissed, so lock scroll
-    case curScrollY > (homeAnimDepth + imgDismissDepth + 500):
-      curScrollY = (homeAnimDepth + imgDismissDepth + 500);
-      break;
+    // case curScrollY > (homeAnimDepth + imgDismissDepth + 500):
+    //   curScrollY = (homeAnimDepth + imgDismissDepth + 500);
+    //   break;
   }
 }
 
@@ -114,16 +116,23 @@ function homeAnimation() {
 }
 
 function triggerProjectsPane() {
+  let paneVhRatio = projectsPane.clientHeight / window.innerHeight;
+  let newBottom = (curScrollY - (homeAnimDepth + (imgDismissDepth * paneVhRatio)));
+  log(`new bot: ${newBottom}`);
+
   // Display projects pane when home image is mostly dismissed
-  if (curScrollY > (homeAnimDepth + (imgDismissDepth / 1.5))) {
+  if (curScrollY > (homeAnimDepth + (imgDismissDepth * paneVhRatio))) {
     setActiveLink(Areas.Projects);
-    projects.style.opacity = 1;
+    projectsPane.style.opacity = 1;
     carefreeVideo.play();
   }
   else {
     setActiveLink(Areas.Home);
-    projects.style.opacity = 0;
+    projectsPane.style.opacity = 0;
   }
+
+  projectsPane.style.bottom = (newBottom < 0) ? '' : (newBottom / scrollSpeed) + '%';
+
 }
 
 function verticalScroll(scrollDelta) {
@@ -156,8 +165,8 @@ window.ontouchmove = e => {
 }
 
 document.onkeydown = e => {
-  if (e.key === 'ArrowUp')        verticalScroll(-220);
-  else if (e.key == 'ArrowDown')  verticalScroll(220);
+  if (e.key === 'ArrowUp')        verticalScroll(-125);
+  else if (e.key == 'ArrowDown')  verticalScroll(125);
   else if (e.key == 'ArrowLeft')  horizontalScroll(100);
   else if (e.key == 'ArrowRight') horizontalScroll(-100);
 }
