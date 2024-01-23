@@ -24,16 +24,28 @@
 
     <!-- Projects Page Area -->
     <section id="projects-pane">
-      <div class="" style="display: flex;">
-        <div class="carousel-arrow" style="flex: 1;">
+      <div class="flex">
+        <div class="carousel-arrow">
           <img src="img/chevron-left.svg" class="chevron" alt="Left arrow for projects carousel">
         </div>
-        <video style="flex: 2;" id="carefree_video" class="landscape-video" src="vid/carefree_short.webm" type="video/webm" autoplay loop muted></video>
-        <div style="flex: 2;" class="project-text">
-          <h2 class="title-medium">Carefree Cooking</h2>
-          <p class="subtitle-medium">Carefree Cooking is a web app to store, view, and edit recipes! Built with a custom backend REST API using Spring and Postgresql. Frontend developed in HTML, CSS, and Javascript.</p>
+
+        <div class="carousel-item-active">
+          <video id="carefree_video" class="video" src="vid/carefree_short.webm" type="video/webm" autoplay loop muted></video>
+          <div class="project-text">
+            <h2 class="title-medium">Carefree Cooking</h2>
+            <p class="subtitle-medium">Carefree Cooking is a web app to store, view, and edit recipes! Built with a custom backend REST API using Spring and Postgresql. Frontend developed in HTML, CSS, and Javascript.</p>
+          </div>
         </div>
-        <div class="carousel-arrow" style="flex: 1;">
+
+        <div class="carousel-item">
+          <video id="carefree_video" class="video" src="vid/health_short.webm" type="video/webm" autoplay loop muted></video>
+          <div class="project-text">
+            <h2 class="title-medium">Health Rewards</h2>
+            <p class="subtitle-medium">Carefree Cooking is a web app to store, view, and edit recipes! Built with a custom backend REST API using Spring and Postgresql. Frontend developed in HTML, CSS, and Javascript.</p>
+          </div>
+        </div>
+
+        <div class="carousel-arrow">
           <img src="img/chevron-right.svg" class="chevron" alt="Right arrow for projects carousel">
         </div>
       </div>

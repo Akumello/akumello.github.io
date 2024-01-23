@@ -84,8 +84,8 @@ h1 {
   margin: 0 12px;
 }
 
-.landscape-video {
-  width: 45%;
+.video {
+  height: 50vh;
   flex: 1;
 }
 
@@ -119,16 +119,17 @@ h1 {
   cursor: default;
   color: var(--light);
   list-style-type: none;
-  font-weight: bolder;
+  /* font-weight: bolder; */
   padding: .15em .4em;
   text-shadow: 1px 1px 1px black;
+  transition: font-size .5s;
 }
 
 .header-link {
   --_c: black;
   cursor: pointer;
   color: transparent;
-  font-weight: lighter;
+  /* font-weight: lighter; */
   padding: .15em .4em;
   text-shadow:
     0 calc(-1*var(--_t,0em)) var(--light),
@@ -180,7 +181,7 @@ h1 {
   bottom: 0%;
   left: 50%;
   transform: translateX(-50%);
-  transition: opacity .65s;
+  transition: opacity .85s ease-in;
 }
 
 .gg-chevron-left {
@@ -211,6 +212,10 @@ h1 {
   font-style: italic;
 }
 
+.flex {
+  display: flex;
+}
+
 .chevron {
   position: relative;
   top: 50%;
@@ -222,21 +227,34 @@ h1 {
 }
 
 .carousel-arrow {
+  flex: 1;
   border-radius: 10px;
   transition: background-color .25s;
+}
+
+.carousel-item-active {
+  display: flex;
+  flex: 4;
+}
+
+.carousel-item {
+  display: none;
+  flex: 4;
+  transform: translateX(120%);
 }
 
 .carousel-arrow:hover {
   background-color: rgba(var(--light-rgb), .3);
 }
-
+/* 21435D */
+/* 7b949c */
 .gradient {
-  background: linear-gradient(225deg, #7b949c, #807595);
+  background: linear-gradient(200deg, #21435D, #807595);
   background-size: 400% 400%;
 
-  -webkit-animation: GradientAnim 8s ease infinite;
-  -moz-animation: GradientAnim 8s ease infinite;
-  animation: GradientAnim 8s ease infinite;
+  -webkit-animation: GradientAnim 12s ease infinite;
+  -moz-animation: GradientAnim 12s ease infinite;
+  animation: GradientAnim 12s ease infinite;
 }
 
 @-webkit-keyframes GradientAnim {

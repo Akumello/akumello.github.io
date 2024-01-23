@@ -186,7 +186,7 @@ homeButton.addEventListener('click', e => {
 });
 
 projectsButton.addEventListener('click', e => {
-  verticalScroll((homeAnimDepth + imgDismissDepth + 500));
+  verticalScroll((homeAnimDepth + imgDismissDepth) - curScrollY);
 });
 
 //#endregion
