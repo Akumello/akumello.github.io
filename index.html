@@ -5,68 +5,68 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Michael's Portfolio</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap" rel="stylesheet">
   </head>
   <body>
-    <!-- Home Page Area -->
-    <section class="left-pane">
-      <div class="home-title">Michael</div>
-      <div class="home-title font-margin">Gallahan</div>
-      <div class="home-subtitle">Software engineer.&nbsp;&nbsp;&nbsp;Data Analyst.&nbsp;&nbsp;&nbsp;Cook.</div>
-    </section>
-    <section class="right-pane">
-      <img src="img/pizza.jpeg" alt="pizza" class="img-home">
-    </section>
+      <!-- Home Page Area -->
+      <section class="left-pane">
+        <div class="home-title">Michael</div>
+        <div class="home-title font-margin">Gallahan</div>
+        <div class="home-subtitle">Software engineer.&nbsp;&nbsp;&nbsp;Data Analyst.&nbsp;&nbsp;&nbsp;Cook.</div>
+      </section>
+      <section class="right-pane">
+        <img src="img/pizza.jpeg" alt="pizza" class="img-home">
+      </section>
 
-    <!-- Projects Page Area -->
-    <section id="projects-pane">
-      <div class="flex">
-        <div class="carousel-arrow">
-          <img src="img/chevron-left.svg" class="chevron" alt="Left arrow for projects carousel">
-        </div>
+      <!-- Projects Page Area -->
+      <section id="projects-pane">
+        <div class="flex">
+          <div class="carousel-arrow">
+            <img src="img/chevron-left.svg" class="chevron" alt="Left arrow for projects carousel">
+          </div>
 
-        <div class="carousel-item-active">
-          <video id="carefree_video" class="video" src="vid/carefree_short.webm" type="video/webm" autoplay loop muted></video>
-          <div class="project-text">
-            <h2 class="title-medium">Carefree Cooking</h2>
-            <p class="subtitle-medium">Carefree Cooking is a web app to store, view, and edit recipes! Built with a custom backend REST API using Spring and Postgresql. Frontend developed in HTML, CSS, and Javascript.</p>
+          <div class="carousel-item-active">
+            <video id="carefree_video" class="video" src="vid/carefree_short.webm" type="video/webm" autoplay loop muted></video>
+            <div class="project-text">
+              <h2 class="title-medium">Carefree Cooking</h2>
+              <p class="subtitle-medium">Carefree Cooking is a web app to store, view, and edit recipes! Built with a custom backend REST API using Spring and Postgresql. Frontend developed in HTML, CSS, and Javascript.</p>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <video id="carefree_video" class="video" src="vid/health_short.webm" type="video/webm" autoplay loop muted></video>
+            <div class="project-text">
+              <h2 class="title-medium">Health Rewards</h2>
+              <p class="subtitle-medium">Carefree Cooking is a web app to store, view, and edit recipes! Built with a custom backend REST API using Spring and Postgresql. Frontend developed in HTML, CSS, and Javascript.</p>
+            </div>
+          </div>
+
+          <div class="carousel-arrow">
+            <img src="img/chevron-right.svg" class="chevron" alt="Right arrow for projects carousel">
           </div>
         </div>
+      </section>
 
-        <div class="carousel-item">
-          <video id="carefree_video" class="video" src="vid/health_short.webm" type="video/webm" autoplay loop muted></video>
-          <div class="project-text">
-            <h2 class="title-medium">Health Rewards</h2>
-            <p class="subtitle-medium">Carefree Cooking is a web app to store, view, and edit recipes! Built with a custom backend REST API using Spring and Postgresql. Frontend developed in HTML, CSS, and Javascript.</p>
-          </div>
-        </div>
-
-        <div class="carousel-arrow">
-          <img src="img/chevron-right.svg" class="chevron" alt="Right arrow for projects carousel">
-        </div>
-      </div>
-    </section>
-
-    <!-- Links -->
-    <section class="links">
-      <ul class="p-0 flex-r-gap">
-        <li id="btn-home" class="header-link" href="">Home</li>
-        <div class="cur-default">|</div>
-        <li id="btn-projects" class="header-link" href="">Projects</li>
-        <div class="cur-default">|</div>
-        <li id="btn-blog" class="header-link" href="">Food Phases</li>
-        <div class="cur-default">|</div>
-        <li id="btn-carefree" class="header-link" href="">Carefee Cooking</li>
-      </ul>
-    </section>
-
+      <!-- Links -->
+      <section class="links">
+        <ul class="p-0 flex-r-gap">
+          <li id="btn-home" class="header-link" href="">Home</li>
+          <div class="cur-default">|</div>
+          <li id="btn-projects" class="header-link" href="">Projects</li>
+          <div class="cur-default">|</div>
+          <li id="btn-blog" class="header-link" href="">Food Phases</li>
+          <div class="cur-default">|</div>
+          <li id="btn-carefree" class="header-link" href="">Carefee Cooking</li>
+        </ul>
+      </section>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap');
     </style>
-    <script src="home.js" async defer></script>
+    <!-- <script src="https://hammerjs.github.io/dist/hammer.js" type="text/javascript"></script> -->
+    <script src="js/home.js" async defer></script>
   </body>
 </html>

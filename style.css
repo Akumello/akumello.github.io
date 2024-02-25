@@ -1,5 +1,5 @@
 :root {
-  --main: #2d877a;
+  --main: #c3f4ed;
   --dark: #131515;
   --dark-accent: #474f4d;
   --light: #e5e4e2;
@@ -15,8 +15,8 @@ html {
 body {
   margin: 0;
   padding: .01px;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   overflow: hidden;
   background-color: var(--light);
   color: var(--dark);
@@ -49,13 +49,6 @@ h1 {
 .heading {
   color: var(--main);
   padding-top: 2rem;
-}
-
-.img-home {
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  overflow: hidden;
 }
 
 .title-medium {
@@ -155,7 +148,7 @@ h1 {
 
 .left-pane {
   margin: 0;
-  position: absolute;
+  position: fixed;
   width: auto;
   top: 50%;
   left: 25%;
@@ -164,11 +157,19 @@ h1 {
 }
 
 .right-pane {
-  position: absolute;
+  position: fixed;
+  overflow: hidden;
   left: 50%;
   z-index: 1;
   /* transition: left .1s;
   transition: bottom .1s; */
+}
+
+.img-home {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  overflow: hidden;
 }
 
 #projects-pane {
@@ -272,23 +273,3 @@ h1 {
   50%{background-position:100% 57%}
   100%{background-position:0% 44%}
 }
-
-/* .project-card {
-  margin: 0;
-  padding-left: 1em;
-  padding-right: 1em;
-  border: solid;
-  border-radius: 5%;
-  border-color: var(--dark);
-  width: 200px;
-  transition: border-color .15s ease-in-out;
-}
-
-.project-card:hover {
-  cursor: pointer;
-  border-color: var(--light-accent);
-}
-
-.project-card:active {
-  border-color: var(--dark);
-} */

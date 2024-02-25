@@ -1,4 +1,4 @@
-const verbose = true; // enable 
+const verbose = false; // enable 
 const Areas = {
   Home: 0,
   Projects: 1,
@@ -148,8 +148,6 @@ function verticalScroll(scrollDelta) {
 function horizontalScroll(scrollDelta) {
   curScrollX += scrollDelta;
   log(`curScrollX: ${curScrollX}`);
-
-
 }
 //#endregion
 
@@ -159,10 +157,28 @@ window.onwheel = e => {
   horizontalScroll(e.deltaX);
 };
 
-window.ontouchmove = e => {
-  verticalScroll(e.deltaY);
-  horizontalScroll(e.deltaX);
+let prevTouchY = 0;
+let prevTouchX = 0;
+window.ontouchstart = e => {
+  prevTouchX = e.touches[0].pageX;
+  prevTouchY = e.touches[0].pageY;
 }
+
+window.ontouchmove = e => {
+  let speed = 1.8;
+  let deltaX = prevTouchX - e.touches[0].pageX;
+  let deltaY = prevTouchY - e.touches[0].pageY;
+
+  verticalScroll(deltaY * speed);
+  horizontalScroll(deltaX * speed);
+
+  prevTouchX = e.touches[0].pageX;
+  prevTouchY = e.touches[0].pageY;
+}
+
+// window.ontouchend = e => {
+
+// }
 
 document.onkeydown = e => {
   if (e.key === 'ArrowUp')        verticalScroll(-125);
